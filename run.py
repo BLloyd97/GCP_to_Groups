@@ -4,8 +4,20 @@ from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 import os
 
-# Initialize the BigQuery client using the first service account JSON file
-bq_client = os.getenv('GCP_KEY')
+# Get the service account key from the environment variable
+gcp_key = os.getenv('GCP_KEY')
+
+if gcp_key is None:
+    raise ValueError("GCP_KEY environment variable is not set.")
+
+# Load the JSON key into a dictionary
+try:
+    credentials_dict = json.loads(gcp_key)  # Ensure it's in dictionary form
+except json.JSONDecodeError as e:
+    raise ValueError("GCP_KEY is not a valid JSON string.") from e
+
+# Create a BigQuery client from the credentials dictionary
+bq_client = bigquery.Client.from_service_account_info(credentials_dict)
 
 # Query the BigQuery table
 bq_query_job = bq_client.query("""
