@@ -2,9 +2,10 @@ import pandas as pd
 from google.cloud import bigquery
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+import os
 
 # Initialize the BigQuery client using the first service account JSON file
-bq_client = GCP_KEY
+bq_client = os.getenv('GCP_KEY')
 
 # Query the BigQuery table
 bq_query_job = bq_client.query("""
@@ -21,7 +22,7 @@ print(df_bq)
 
 # Define your credentials and scopes for Google Admin SDK
 scopes = ['https://www.googleapis.com/auth/admin.directory.group']
-admin_credentials = DPNM_GOOGLE_ADMIN_KEY
+admin_credentials = os.getenv('DPNM_GOOGLE_ADMIN_KEY')
 
 # Build the Admin SDK service
 service = build('admin', 'directory_v1', credentials=admin_credentials)
