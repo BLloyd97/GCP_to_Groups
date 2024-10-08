@@ -4,9 +4,7 @@ from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
 # Initialize the BigQuery client using the first service account JSON file
-bq_client = bigquery.Client.from_service_account_json(
-    r"C:\Users\brian\Documents\JSON_key_google_service_account\BigQuery_creds.json"
-)
+bq_client = gcp_key
 
 # Query the BigQuery table
 bq_query_job = bq_client.query("""
@@ -23,10 +21,8 @@ print(df_bq)
 
 # Define your credentials and scopes for Google Admin SDK
 scopes = ['https://www.googleapis.com/auth/admin.directory.group']
-admin_credentials = Credentials.from_service_account_file(
-    r'C:\Users\brian\Documents\JSON_key_google_service_account\astute-catcher-380823-7a79f4a243c0.json', 
+admin_credentials = DPNM_GOOGLE_ADMIN_KEY, 
     scopes=scopes
-)
 
 # Build the Admin SDK service
 service = build('admin', 'directory_v1', credentials=admin_credentials)
