@@ -21,8 +21,7 @@ print(df_bq)
 
 # Define your credentials and scopes for Google Admin SDK
 scopes = ['https://www.googleapis.com/auth/admin.directory.group']
-admin_credentials = DPNM_GOOGLE_ADMIN_KEY, 
-    scopes=scopes
+admin_credentials = DPNM_GOOGLE_ADMIN_KEY
 
 # Build the Admin SDK service
 service = build('admin', 'directory_v1', credentials=admin_credentials)
