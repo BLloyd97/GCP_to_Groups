@@ -3,6 +3,7 @@ from google.cloud import bigquery
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 import os
+import json
 
 # Get the service account key from the environment variable
 gcp_key = os.getenv('GCP_KEY')
