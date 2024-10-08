@@ -4,7 +4,7 @@ from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
 # Initialize the BigQuery client using the first service account JSON file
-bq_client = gcp_key
+bq_client = GCP_KEY
 
 # Query the BigQuery table
 bq_query_job = bq_client.query("""
